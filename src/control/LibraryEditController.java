@@ -4,34 +4,49 @@ import entity.*;
 
 public class LibraryEditController {
 
-    public boolean updateTitle(LibraryItem item, String newTitle) {
-        if (item == null || newTitle == null || newTitle.isEmpty()) {
-            return false;
+    public void updateTitle(LibraryItem item, String newTitle) {
+        if (item != null && newTitle != null && !newTitle.isEmpty()) {
+            item.setTitle(newTitle);
         }
-        item.setTitle(newTitle);
-        return true;
     }
 
-    public boolean updateBookInfo(LibraryItem item, String author, int pages) {
+    public boolean updateBook(
+            LibraryItem item,
+            String newTitle,
+            int pages) {
+
         if (!(item instanceof Book)) return false;
 
         Book b = (Book) item;
+        b.setTitle(newTitle);
         b.setValue(pages);
         return true;
     }
 
-    public boolean updateDVDInfo(LibraryItem item, int duration) {
+    // Sua thong tin DVD
+    public boolean updateDVD(
+            LibraryItem item,
+            String newTitle,
+            int duration) {
+
         if (!(item instanceof DVD)) return false;
 
         DVD d = (DVD) item;
+        d.setTitle(newTitle);
         d.setValue(duration);
         return true;
     }
 
-    public boolean updateMagazineInfo(LibraryItem item, int issueNumber) {
+    // Sua thong tin Tap chi
+    public boolean updateMagazine(
+            LibraryItem item,
+            String newTitle,
+            int issueNumber) {
+
         if (!(item instanceof Magazine)) return false;
 
         Magazine m = (Magazine) item;
+        m.setTitle(newTitle);
         m.setValue(issueNumber);
         return true;
     }
