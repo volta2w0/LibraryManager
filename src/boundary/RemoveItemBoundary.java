@@ -3,31 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package boundary;
+import control.RemoveItemController;
 import javax.swing.JOptionPane;
-
-import control.LibraryManagerController;
+import dto.LibraryItemDTO;
 
 /**
  *
  * @author Haidang7320
  */
 public class RemoveItemBoundary {
-    private LibraryManagerController manager;
-
-    public RemoveItemBoundary(LibraryManagerController manager) {
-        this.manager = manager;
-    }
-    public void removeItem()
-    {
-        long id = Long.parseLong(
-        JOptionPane.showInputDialog("Nhap ID"));
-        if(manager.removeById(id))
+    public static void show() {
+        long id = Long.parseLong(JOptionPane.showInputDialog("Nhap ID can xoa: "));
+        boolean result  = new RemoveItemController().removeItem(id);
+        if(result)
         {
-            JOptionPane.showMessageDialog(null, "Xoa Tai Lieu Thanh Cong");
+            JOptionPane.showMessageDialog(null,"Da Xoa");
         }
-        else
+        else 
         {
-            JOptionPane.showMessageDialog(null, "Xoa Tai Lieu That Bai");
+            JOptionPane.showMessageDialog(null,"Chua Xoa");
+
         }
     }
 }

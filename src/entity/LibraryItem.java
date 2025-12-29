@@ -25,6 +25,6 @@ public abstract class LibraryItem {
     public void getType(String _type) { type = _type; }
 
     public abstract double calculateFee(int days);
-
+    public abstract void setValue(int _value);
     public abstract int getValue();
 }
