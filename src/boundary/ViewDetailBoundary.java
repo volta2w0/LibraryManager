@@ -26,7 +26,26 @@ public class ViewDetailBoundary {
         }
         else
         {
-            JOptionPane.showMessageDialog(null ,dto.id + " | " + dto.title + " | " + dto.type );   // them switch sau de phan ra tung loai 
+            String info;
+
+            switch (dto.type.toLowerCase()) {
+                case "book":
+                    info = "Page: " + dto.value;
+                    break;
+                case "dvd":
+                    info = "Duration: " + dto.value;
+                    break;
+                case "magazine":
+                    info = "Issue Number: " + dto.value;
+                    break;
+                default:
+                    info = "Value: " + dto.value;
+            }
+
+            JOptionPane.showMessageDialog(
+                null,
+                dto.id + " | " + dto.title + " | " + dto.type + " | " + info
+            );
         }
     }
 }

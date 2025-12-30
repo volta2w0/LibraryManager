@@ -22,14 +22,29 @@ public class ListAllBoundary {
             return;
         }
 
-        StringBuilder sb = new StringBuilder("danh sach tai lieu \n\n");
+        StringBuilder sb = new StringBuilder("Danh sach tai lieu\n\n");
 
         for (LibraryItemDTO dto : list) {
             sb.append("ID: ").append(dto.id)
               .append("\nTieu de: ").append(dto.title)
               .append("\nLoai: ").append(dto.type)
-              .append("\nValue: ").append(dto.value)
-              .append("\n--------------------\n");
+              .append("\n");
+
+            switch (dto.type.toLowerCase()) {
+                case "book":
+                    sb.append("Page: ").append(dto.value);
+                    break;
+                case "dvd":
+                    sb.append("Duration: ").append(dto.value);
+                    break;
+                case "magazine":
+                    sb.append("Issue Number: ").append(dto.value);
+                    break;
+                default:
+                    sb.append("Value: ").append(dto.value);
+            }
+
+            sb.append("\n--------------------\n");
         }
 
         JOptionPane.showMessageDialog(null, sb.toString());

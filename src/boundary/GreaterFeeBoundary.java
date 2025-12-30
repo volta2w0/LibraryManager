@@ -40,8 +40,19 @@ public class GreaterFeeBoundary {
             sb.append("ID: ").append(dto.id)
               .append("\nTen: ").append(dto.title)
               .append("\nLoai: ").append(dto.type)
-              .append("\nGia tri: ").append(dto.value)
-              .append("\n--------------------\n");
+              .append("\n");
+
+            if (dto.type.equalsIgnoreCase("Book")) {
+                sb.append("Page: ").append(dto.value);
+            } else if (dto.type.equalsIgnoreCase("DVD")) {
+                sb.append("Duration: ").append(dto.value);
+            } else if (dto.type.equalsIgnoreCase("Magazine")) {
+                sb.append("Issue Number: ").append(dto.value);
+            } else {
+                sb.append("Value: ").append(dto.value);
+            }
+
+            sb.append("\n--------------------\n");
         }
 
         JOptionPane.showMessageDialog(null, sb.toString());

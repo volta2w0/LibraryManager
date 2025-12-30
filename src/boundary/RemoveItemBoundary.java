@@ -5,8 +5,6 @@
 package boundary;
 import control.RemoveItemController;
 import javax.swing.JOptionPane;
-import dto.LibraryItemDTO;
-
 /**
  *
  * @author Haidang7320

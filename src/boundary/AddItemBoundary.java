@@ -1,9 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package boundary;
 
 import control.AddItemController;
 import dto.LibraryItemDTO;
 import javax.swing.JOptionPane;
-
+/**
+ *
+ * @author Haidang7320
+ */
 public class AddItemBoundary {
     public static void show() {
         LibraryItemDTO dto = new LibraryItemDTO();

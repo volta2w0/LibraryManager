@@ -4,17 +4,39 @@
  */
 package dao;
 
+import entity.Book;
+import entity.DVD;
 /**
  *
  * @author Haidang7320
  */
 import entity.LibraryItem;
+import entity.Magazine;
+
 import java.util.ArrayList;
+
+import dto.LibraryItemDTO;
 
 public class LibraryItemDAO {
     private static ArrayList<LibraryItem> items = new ArrayList<>();
 
-    public static void add(LibraryItem item) {
+    public static void add(LibraryItemDTO dto) {
+        LibraryItem item;
+
+        switch (dto.type.toLowerCase()) {
+            case "book":
+                item = new Book(dto.id, dto.title, dto.value);
+                break;
+            case "dvd":
+                item = new DVD(dto.id, dto.title, dto.value);
+                break;
+            case "magazine":
+                item = new Magazine(dto.id, dto.title, dto.value);
+                break;
+            default:
+                return;
+        }
+
         items.add(item);
     }
 
