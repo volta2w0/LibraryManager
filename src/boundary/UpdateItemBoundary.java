@@ -13,7 +13,7 @@ import dto.LibraryItemDTO;
 
 import javax.swing.JOptionPane;
 public class UpdateItemBoundary {
-    public static void show() {
+    public void show() {
         LibraryItemDTO dto = new LibraryItemDTO();
         dto.id = Long.parseLong(JOptionPane.showInputDialog("Nhập ID cần sửa"));
         dto.title = JOptionPane.showInputDialog("Nhập title mới");

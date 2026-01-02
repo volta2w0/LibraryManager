@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 public class GreaterFeeBoundary {
 
-    public static void show() {
+    public void show() {
         String input = JOptionPane.showInputDialog("Nhap so ngay muon:");
         if (input == null) return;
 

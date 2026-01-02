@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author Haidang7320
  */
 public class ViewDetailBoundary {
-    public static void show()
+    public void show()
     {
         long id = Long.parseLong(
                 JOptionPane.showInputDialog("Nhập ID")

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Haidang7320
  */
 public class AddItemBoundary {
-    public static void show() {
+    public void show() {
         LibraryItemDTO dto = new LibraryItemDTO();
         dto.id = Long.parseLong(JOptionPane.showInputDialog("ID"));
         dto.title = JOptionPane.showInputDialog("Title");

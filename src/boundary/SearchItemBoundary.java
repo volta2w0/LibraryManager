@@ -12,13 +12,13 @@ import java.util.ArrayList;
  * @author Haidang7320
  */
 public class SearchItemBoundary {
-    public static void show()
+    public void show()
     {
         String title = JOptionPane.showInputDialog("Nhap Tieu De Can Tim:");
         ArrayList<LibraryItemDTO> list = new SearchItemController().search(title);
         showlist(list);
     }
-    private static void showlist(ArrayList<LibraryItemDTO> list)
+    private void showlist(ArrayList<LibraryItemDTO> list)
     {
         if (list.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Khong co ket qua");

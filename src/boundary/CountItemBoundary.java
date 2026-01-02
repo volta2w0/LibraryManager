@@ -11,7 +11,7 @@ package boundary;
 import javax.swing.JOptionPane;
 import control.CountItemController;
 public class CountItemBoundary {
-        public static void show() {
+        public void show() {
         CountItemController control = new CountItemController();
 
         int book = control.count("Book");

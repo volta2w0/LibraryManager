@@ -1,0 +1,34 @@
+@startuml
+skinparam componentStyle uml2
+
+actor User
+
+class AddItemBoundary <<boundary>>
+class AddItemController <<control>>
+class LibraryItemDAO <<control>>
+class LibraryPrintController <<control>>
+class LibraryItemDTO <<entity>>
+class LibraryItem <<entity>>
+class fakedb <<entity>>
+
+User --> AddItemBoundary : enter item data
+AddItemBoundary -> AddItemController : validate()
+AddItemBoundary -> AddItemController : createDTO()
+AddItemController -> LibraryItemDAO : addItem(LibraryItemDTO)
+LibraryItemDAO -> fakedb : insert(record)
+AddItemController -> LibraryPrintController : printConfirmation()
+AddItemController -> LibraryItem : createEntity(LibraryItemDTO)
+
+note right of AddItemBoundary
+  Boundary: UI dialog/form for adding items
+end note
+
+note right of AddItemController
+  Control: orchestrates validation, creation, persistence
+end note
+
+note left of LibraryItemDAO
+  DAO: maps DTO to persistence layer
+end note
+
+@enduml

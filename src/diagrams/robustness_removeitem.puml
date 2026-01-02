@@ -1,0 +1,29 @@
+@startuml
+skinparam componentStyle uml2
+
+actor User
+
+class RemoveItemBoundary <<boundary>>
+class RemoveItemController <<control>>
+class LibraryItemDAO <<control>>
+class LibraryPrintController <<control>>
+class LibraryItem <<entity>>
+class fakedb <<entity>>
+
+User --> RemoveItemBoundary : provide identifier
+RemoveItemBoundary -> RemoveItemController : validateIdentifier()
+RemoveItemController -> LibraryItemDAO : findItem(id)
+LibraryItemDAO --> RemoveItemController : itemDTO
+RemoveItemController -> LibraryItemDAO : removeItem(id)
+LibraryItemDAO -> fakedb : delete(record)
+RemoveItemController -> LibraryPrintController : printRemovalConfirmation()
+
+note right of RemoveItemController
+  Control: looks up, confirms and instructs DAO to remove
+end note
+
+note left of LibraryItemDAO
+  DAO: handles persistence lookup and deletion
+end note
+
+@enduml

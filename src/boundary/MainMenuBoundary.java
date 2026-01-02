@@ -20,29 +20,37 @@ public class MainMenuBoundary {
 
             switch (choice) {
                 case 1:
-                    AddItemBoundary.show();
+                    AddItemBoundary additem = new AddItemBoundary();
+                    additem.show();
                     break;
 
                 case 2:
-                    RemoveItemBoundary.show();
+                    RemoveItemBoundary removeitem = new RemoveItemBoundary();
+                    removeitem.show();
                     break;
                 case 3:
-                    ViewDetailBoundary.show();
+                    ViewDetailBoundary viewitem = new ViewDetailBoundary();
+                    viewitem.show();
                     break;
                 case 4:
-                    SearchItemBoundary.show();
+                    SearchItemBoundary searchitem = new SearchItemBoundary();
+                    searchitem.show();
                     break;
                 case 5:
-                    UpdateItemBoundary.show();
+                    UpdateItemBoundary updateitem = new UpdateItemBoundary();
+                    updateitem.show();
                     break;
                 case 6:
-                    CountItemBoundary.show();
+                    CountItemBoundary countItem= new CountItemBoundary();
+                    countItem.show();
                     break;
                 case 7:
-                    ListAllBoundary.show();
+                    ListAllBoundary lisi = new ListAllBoundary();
+                    lisi.show();
                     break;
                 case 8:
-                    GreaterFeeBoundary.show();
+                    GreaterFeeBoundary gfb = new GreaterFeeBoundary();
+                    gfb.show();
                     break;
                 case 0:
                     return;

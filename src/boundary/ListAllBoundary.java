@@ -13,7 +13,7 @@ import dto.LibraryItemDTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 public class ListAllBoundary {
-        public static void show() {
+        public void show() {
         ListAllController control = new ListAllController();
         ArrayList<LibraryItemDTO> list = control.listAll();
 

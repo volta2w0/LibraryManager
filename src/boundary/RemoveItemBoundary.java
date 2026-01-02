@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  * @author Haidang7320
  */
 public class RemoveItemBoundary {
-    public static void show() {
+    public void show() {
         long id = Long.parseLong(JOptionPane.showInputDialog("Nhap ID can xoa: "));
         boolean result  = new RemoveItemController().removeItem(id);
         if(result)
