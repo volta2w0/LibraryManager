@@ -4,6 +4,9 @@
  */
 package boundary;
 import control.RemoveItemController;
+import dao.LibraryItemDAO;
+import dao.MemoryLibraryItemDAO;
+
 import javax.swing.JOptionPane;
 /**
  *
@@ -12,7 +15,8 @@ import javax.swing.JOptionPane;
 public class RemoveItemBoundary {
     public void show() {
         long id = Long.parseLong(JOptionPane.showInputDialog("Nhap ID can xoa: "));
-        boolean result  = new RemoveItemController().removeItem(id);
+        LibraryItemDAO dao = new MemoryLibraryItemDAO();
+        boolean result  = new RemoveItemController(dao).removeItem(id);
         if(result)
         {
             JOptionPane.showMessageDialog(null,"Da Xoa");

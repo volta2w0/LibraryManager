@@ -8,11 +8,15 @@ import dao.LibraryItemDAO;
 import dto.LibraryItemDTO;
 import entity.LibraryItem;
 public class UpdateItemController {
+    private LibraryItemDAO LibraryItemDAO;
+    public UpdateItemController(LibraryItemDAO dao) {
+        this.LibraryItemDAO = dao;
+    }
     public boolean update(LibraryItemDTO dto) {
-        LibraryItem item = LibraryItemDAO.findById(dto.id);
+        LibraryItem item = LibraryItemDAO.getById(dto.getId());
         if (item == null) return false;
-        item.setTitle(dto.title);
-        item.setValue(dto.value);
+        item.setTitle(dto.getTitle());
+        item.setValue(dto.getValue());
         return true;
     }
 }

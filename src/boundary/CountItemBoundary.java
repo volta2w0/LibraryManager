@@ -10,9 +10,12 @@ package boundary;
  */
 import javax.swing.JOptionPane;
 import control.CountItemController;
+import dao.LibraryItemDAO;
+import dao.MemoryLibraryItemDAO;
 public class CountItemBoundary {
         public void show() {
-        CountItemController control = new CountItemController();
+        LibraryItemDAO db = new MemoryLibraryItemDAO();
+        CountItemController control = new CountItemController(db);
 
         int book = control.count("Book");
         int dvd = control.count("DVD");

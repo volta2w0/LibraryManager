@@ -9,6 +9,8 @@ package boundary;
  * @author Haidang7320
  */
 import control.GreaterFeeController;
+import dao.LibraryItemDAO;
+import dao.MemoryLibraryItemDAO;
 import dto.LibraryItemDTO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -25,8 +27,8 @@ public class GreaterFeeBoundary {
             JOptionPane.showMessageDialog(null, "So ngay khong hop le");
             return;
         }
-
-        GreaterFeeController control = new GreaterFeeController();
+        LibraryItemDAO dao = new MemoryLibraryItemDAO();
+        GreaterFeeController control = new GreaterFeeController(dao);
         ArrayList<LibraryItemDTO> list = control.filter(days);
 
         if (list.isEmpty()) {
@@ -37,19 +39,19 @@ public class GreaterFeeBoundary {
         StringBuilder sb = new StringBuilder("Danh sach tai lieu > 2$\n\n");
 
         for (LibraryItemDTO dto : list) {
-            sb.append("ID: ").append(dto.id)
-              .append("\nTen: ").append(dto.title)
-              .append("\nLoai: ").append(dto.type)
+            sb.append("ID: ").append(dto.getId())
+              .append("\nTen: ").append(dto.getTitle())
+              .append("\nLoai: ").append(dto.getType())
               .append("\n");
 
-            if (dto.type.equalsIgnoreCase("Book")) {
-                sb.append("Page: ").append(dto.value);
-            } else if (dto.type.equalsIgnoreCase("DVD")) {
-                sb.append("Duration: ").append(dto.value);
-            } else if (dto.type.equalsIgnoreCase("Magazine")) {
-                sb.append("Issue Number: ").append(dto.value);
+            if (dto.getType().equalsIgnoreCase("Book")) {
+                sb.append("Page: ").append(dto.getValue());
+            } else if (dto.getType().equalsIgnoreCase("DVD")) {
+                sb.append("Duration: ").append(dto.getValue());
+            } else if (dto.getType().equalsIgnoreCase("Magazine")) {
+                sb.append("Issue Number: ").append(dto.getValue());
             } else {
-                sb.append("Value: ").append(dto.value);
+                sb.append("Value: ").append(dto.getValue());
             }
 
             sb.append("\n--------------------\n");

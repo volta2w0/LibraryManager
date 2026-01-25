@@ -5,7 +5,9 @@
 package boundary;
 
 import control.AddItemController;
+import dao.LibraryItemDAO;
 import dto.LibraryItemDTO;
+import dao.MemoryLibraryItemDAO;
 import javax.swing.JOptionPane;
 /**
  *
@@ -14,12 +16,13 @@ import javax.swing.JOptionPane;
 public class AddItemBoundary {
     public void show() {
         LibraryItemDTO dto = new LibraryItemDTO();
-        dto.id = Long.parseLong(JOptionPane.showInputDialog("ID"));
-        dto.title = JOptionPane.showInputDialog("Title");
-        dto.type = JOptionPane.showInputDialog("Book / DVD / Magazine");
-        dto.value = Integer.parseInt(JOptionPane.showInputDialog("Pages / Duration / Issue"));
-
-        new AddItemController().addItem(dto);
+        dto.setId(Long.parseLong(JOptionPane.showInputDialog("ID")));
+        dto.setTitle(JOptionPane.showInputDialog("Title"));
+        dto.setType(JOptionPane.showInputDialog("Book / DVD / Magazine"));
+        dto.setValue(Integer.parseInt(JOptionPane.showInputDialog("Pages / Duration / Issue")));
+        LibraryItemDAO dao = new MemoryLibraryItemDAO();
+        AddItemController controller = new AddItemController(dao);
+        controller.addItem(dto);
     }
 }
 

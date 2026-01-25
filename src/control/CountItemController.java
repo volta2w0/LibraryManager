@@ -10,11 +10,16 @@ import dao.LibraryItemDAO;
  * @author Haidang7320
  */
 public class CountItemController {
+    private LibraryItemDAO dao;
+    public CountItemController(LibraryItemDAO dao) {
+        this.dao = dao;
+    }
     public int count(String type) {
         int count = 0;
-        for (LibraryItem i : LibraryItemDAO.getAll())
+        for (LibraryItem i : dao.getAll().values()) {
             if (i.getType().equalsIgnoreCase(type))
                 count++;
+        }
         return count;
     }
 

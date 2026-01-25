@@ -1,10 +1,5 @@
 package entity;
-
-/**
- *
- * @author XuanDat
- */
-public  class LibraryItem {
+public abstract class LibraryItem {
     protected long id;
     protected String title;
     protected String type;
@@ -22,9 +17,9 @@ public  class LibraryItem {
     public void setTitle(String _title) { title = _title; }
     
     public String getType() { return type; }
-    public void getType(String _type) { type = _type; }
+    public void setType(String _type) { type = _type; }
 
-    public double calculateFee(int days){return 0.0f;}
-    public void setValue(int _value){}
-    public int getValue() { return 0;};
+    public abstract double calculateFee(int days);
+    public abstract void setValue(int _value);
+    public abstract int getValue();
 }

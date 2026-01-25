@@ -9,13 +9,15 @@ package db;
  * @author Haidang7320
  */
 import control.AddItemController;
+import dao.MemoryLibraryItemDAO;
 import dto.LibraryItemDTO;
 
 
 public class fakedb {
 
     public static void load() {
-        AddItemController control = new AddItemController();
+        MemoryLibraryItemDAO db = new MemoryLibraryItemDAO();
+        AddItemController control = new AddItemController(db);
 
         // ===== BOOKS =====
         control.addItem(dto(1, "Java OOP Basics", "Book", 120));
@@ -35,10 +37,10 @@ public class fakedb {
 
     private static LibraryItemDTO dto(long id, String title, String type, int value) {
         LibraryItemDTO dto = new LibraryItemDTO();
-        dto.id = id;
-        dto.title = title;
-        dto.type = type;
-        dto.value = value;
+        dto.setId(id);
+        dto.setTitle(title);
+        dto.setType(type);
+        dto.setValue(value);
         return dto;
     }
 }

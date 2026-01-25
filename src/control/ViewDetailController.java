@@ -12,15 +12,19 @@ import dao.LibraryItemDAO;
 import dto.LibraryItemDTO;
 import entity.LibraryItem;
 public class ViewDetailController {
+    private LibraryItemDAO LibraryItemDAO;
+    public ViewDetailController(LibraryItemDAO dao) {
+        this.LibraryItemDAO = dao;
+    }
     public LibraryItemDTO viewDetail(long id)
     {
-       LibraryItem item = LibraryItemDAO.findById(id);
+       LibraryItem item = LibraryItemDAO.getById(id);
        if (item == null) return null;
         LibraryItemDTO dto = new LibraryItemDTO();
-        dto.id = item.getId();
-        dto.title = item.getTitle();
-        dto.type = item.getType();
-        dto.value = item.getValue();
+        dto.setId(item.getId());
+        dto.setTitle(item.getTitle());
+        dto.setType(item.getType());
+        dto.setValue(item.getValue());
 
         return dto;
     }

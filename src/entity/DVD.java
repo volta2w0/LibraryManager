@@ -1,9 +1,5 @@
 package entity;
 
-/**
- *
- * @author XuanDat
- */
 public class DVD extends LibraryItem {
     private int duration;
 

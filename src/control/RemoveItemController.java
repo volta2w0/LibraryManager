@@ -13,6 +13,10 @@ package control;
 import dao.LibraryItemDAO;
 
 public class RemoveItemController {
+    private LibraryItemDAO LibraryItemDAO;
+    public RemoveItemController(LibraryItemDAO dao) {
+        this.LibraryItemDAO = dao;
+    }
     public boolean removeItem(long id) {
         return LibraryItemDAO.remove(id);
     }

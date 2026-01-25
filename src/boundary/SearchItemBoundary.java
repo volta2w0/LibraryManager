@@ -6,6 +6,9 @@ package boundary;
 import javax.swing.JOptionPane;
 import dto.LibraryItemDTO;
 import control.SearchItemController;
+import dao.LibraryItemDAO;
+import dao.MemoryLibraryItemDAO;
+
 import java.util.ArrayList;
 /**
  *
@@ -15,7 +18,8 @@ public class SearchItemBoundary {
     public void show()
     {
         String title = JOptionPane.showInputDialog("Nhap Tieu De Can Tim:");
-        ArrayList<LibraryItemDTO> list = new SearchItemController().search(title);
+        LibraryItemDAO dao = new MemoryLibraryItemDAO();
+        ArrayList<LibraryItemDTO> list = new SearchItemController(dao).search(title);
         showlist(list);
     }
     private void showlist(ArrayList<LibraryItemDTO> list)
@@ -24,15 +28,9 @@ public class SearchItemBoundary {
             JOptionPane.showMessageDialog(null, "Khong co ket qua");
             return;
         }
-
         StringBuilder sb = new StringBuilder();
         for (LibraryItemDTO dto : list) {
-            sb.append(dto.id)
-              .append(" | ")
-              .append(dto.title)
-              .append(" | ")
-              .append(dto.type)
-              .append("\n");
+            sb.append(dto.formatDisplay()).append("\n");
         }
         JOptionPane.showMessageDialog(null, sb.toString());
     }

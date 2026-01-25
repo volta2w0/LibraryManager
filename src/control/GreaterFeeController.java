@@ -13,16 +13,20 @@ import entity.LibraryItem;
  * @author Haidang7320
  */
 public class GreaterFeeController {
+    private LibraryItemDAO LibraryItemDAO;
+    public GreaterFeeController(LibraryItemDAO dao) {
+        this.LibraryItemDAO = dao;
+    }
         public ArrayList<LibraryItemDTO> filter(int days) {
         ArrayList<LibraryItemDTO> result = new ArrayList<>();
-
-        for (LibraryItem item : LibraryItemDAO.getAll()) {
+    
+        for (LibraryItem item : LibraryItemDAO.getAll().values()) {
             if (item.calculateFee(days) > 2) {
                 LibraryItemDTO dto = new LibraryItemDTO();
-                dto.id = item.getId();
-                dto.title = item.getTitle();
-                dto.type = item.getType();
-                dto.value = item.getValue();
+                dto.setId(item.getId());
+                dto.setTitle(item.getTitle());
+                dto.setType(item.getType());
+                dto.setValue(item.getValue());
 
                 result.add(dto);
             }

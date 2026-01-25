@@ -6,6 +6,9 @@ package boundary;
 import control.ViewDetailController;
 import dto.LibraryItemDTO;
 import javax.swing.JOptionPane;
+
+import dao.LibraryItemDAO;
+import dao.MemoryLibraryItemDAO;
 /**
  *
  * @author Haidang7320
@@ -16,8 +19,8 @@ public class ViewDetailBoundary {
         long id = Long.parseLong(
                 JOptionPane.showInputDialog("Nhập ID")
         );
-
-        LibraryItemDTO dto = new ViewDetailController().viewDetail(id);
+        LibraryItemDAO dao = new MemoryLibraryItemDAO();
+        LibraryItemDTO dto = new ViewDetailController(dao).viewDetail(id);
 
         if(dto == null)
         {
@@ -28,23 +31,23 @@ public class ViewDetailBoundary {
         {
             String info;
 
-            switch (dto.type.toLowerCase()) {
+            switch (dto.getType().toLowerCase()) {
                 case "book":
-                    info = "Page: " + dto.value;
+                    info = "Page: " + dto.getValue();
                     break;
                 case "dvd":
-                    info = "Duration: " + dto.value;
+                    info = "Duration: " + dto.getValue();
                     break;
                 case "magazine":
-                    info = "Issue Number: " + dto.value;
+                    info = "Issue Number: " + dto.getValue();
                     break;
                 default:
-                    info = "Value: " + dto.value;
+                    info = "Value: " + dto.getValue();
             }
 
             JOptionPane.showMessageDialog(
                 null,
-                dto.id + " | " + dto.title + " | " + dto.type + " | " + info
+                dto.getId() + " | " + dto.getTitle() + " | " + dto.getType() + " | " + info
             );
         }
     }
