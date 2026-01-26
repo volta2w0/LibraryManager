@@ -5,30 +5,26 @@
 package boundary;
 import control.ViewDetailController;
 import dto.LibraryItemDTO;
+import util.UIExceptionHandler;
 import javax.swing.JOptionPane;
-
 import dao.LibraryItemDAO;
-import dao.MemoryLibraryItemDAO;
 /**
  *
  * @author Haidang7320
  */
 public class ViewDetailBoundary {
+    private LibraryItemDAO dao;
+    public ViewDetailBoundary(LibraryItemDAO dao) {
+        this.dao = dao;
+    }
     public void show()
     {
-        long id = Long.parseLong(
-                JOptionPane.showInputDialog("Nhập ID")
-        );
-        LibraryItemDAO dao = new MemoryLibraryItemDAO();
-        LibraryItemDTO dto = new ViewDetailController(dao).viewDetail(id);
+        try {
+            long id = Long.parseLong(
+                    JOptionPane.showInputDialog("Nhập ID")
+            );
+            LibraryItemDTO dto = new ViewDetailController(dao).viewDetail(id);
 
-        if(dto == null)
-        {
-            JOptionPane.showMessageDialog(null, "Khong co du lieu");
-            
-        }
-        else
-        {
             String info;
 
             switch (dto.getType().toLowerCase()) {
@@ -49,6 +45,8 @@ public class ViewDetailBoundary {
                 null,
                 dto.getId() + " | " + dto.getTitle() + " | " + dto.getType() + " | " + info
             );
+        } catch (Exception e) {
+            UIExceptionHandler.handleException(e);
         }
     }
 }

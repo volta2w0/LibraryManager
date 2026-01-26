@@ -11,19 +11,27 @@ package boundary;
 import javax.swing.JOptionPane;
 import control.CountItemController;
 import dao.LibraryItemDAO;
-import dao.MemoryLibraryItemDAO;
-public class CountItemBoundary {
-        public void show() {
-        LibraryItemDAO db = new MemoryLibraryItemDAO();
-        CountItemController control = new CountItemController(db);
+import util.UIExceptionHandler;
 
-        int book = control.count("Book");
-        int dvd = control.count("DVD");
-        int magazine = control.count("Magazine");
+public class CountItemBoundary {
+    private LibraryItemDAO dao;
+    public CountItemBoundary(LibraryItemDAO dao) {
+        this.dao = dao;
+    }
+    public void show() {
+        try {
+            CountItemController control = new CountItemController(dao);
+
+            int book = control.count("Book");
+            int dvd = control.count("DVD");
+            int magazine = control.count("Magazine");
 
             JOptionPane.showMessageDialog(null,
-                "Book: " + book +
-                "\nDVD: " + dvd +
-                "\nMagazine: " + magazine);
+                "📚 Book: " + book +
+                "\n🎬 DVD: " + dvd +
+                "\n📰 Magazine: " + magazine);
+        } catch (Exception e) {
+            UIExceptionHandler.handleException(e);
+        }
     }
 }

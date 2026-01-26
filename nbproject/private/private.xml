@@ -4,6 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/control/AddItemController.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/control/SearchItemController.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/dao/LibraryItemDAO.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/main/Main.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/exception/ItemRemovalFailedException.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/boundary/AddItemBoundary.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/boundary/UpdateItemBoundary.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/dao/MemoryLibraryItemDAO.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/exception/ItemNotFoundException.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/control/UpdateItemController.java</file>
+            <file>file:/C:/Users/Haidang7320/Documents/NetBeansProjects/LibaryManager/src/boundary/MainMenuBoundary.java</file>
         </group>
     </open-files>
 </project-private>

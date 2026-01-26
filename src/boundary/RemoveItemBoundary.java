@@ -5,26 +5,24 @@
 package boundary;
 import control.RemoveItemController;
 import dao.LibraryItemDAO;
-import dao.MemoryLibraryItemDAO;
-
+import util.UIExceptionHandler;
 import javax.swing.JOptionPane;
 /**
  *
  * @author Haidang7320
  */
 public class RemoveItemBoundary {
+    private LibraryItemDAO dao;
+    public RemoveItemBoundary(LibraryItemDAO dao) {
+        this.dao = dao;
+    }
     public void show() {
-        long id = Long.parseLong(JOptionPane.showInputDialog("Nhap ID can xoa: "));
-        LibraryItemDAO dao = new MemoryLibraryItemDAO();
-        boolean result  = new RemoveItemController(dao).removeItem(id);
-        if(result)
-        {
-            JOptionPane.showMessageDialog(null,"Da Xoa");
-        }
-        else 
-        {
-            JOptionPane.showMessageDialog(null,"Chua Xoa");
-
+        try {
+            long id = Long.parseLong(JOptionPane.showInputDialog("Nhap ID can xoa: "));
+            new RemoveItemController(dao).removeItem(id);
+            UIExceptionHandler.showSuccess("Xóa tài liệu thành công!");
+        } catch (Exception e) {
+            UIExceptionHandler.handleException(e);
         }
     }
 }

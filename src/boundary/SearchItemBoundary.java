@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 import dto.LibraryItemDTO;
 import control.SearchItemController;
 import dao.LibraryItemDAO;
-import dao.MemoryLibraryItemDAO;
+import util.UIExceptionHandler;
 
 import java.util.ArrayList;
 /**
@@ -15,17 +15,28 @@ import java.util.ArrayList;
  * @author Haidang7320
  */
 public class SearchItemBoundary {
+    private LibraryItemDAO dao;
+    public SearchItemBoundary(LibraryItemDAO dao) {
+        this.dao = dao;
+    }
     public void show()
     {
-        String title = JOptionPane.showInputDialog("Nhap Tieu De Can Tim:");
-        LibraryItemDAO dao = new MemoryLibraryItemDAO();
-        ArrayList<LibraryItemDTO> list = new SearchItemController(dao).search(title);
-        showlist(list);
+        try {
+            String title = JOptionPane.showInputDialog("Nhap Tieu De Can Tim:");
+            if (title == null || title.trim().isEmpty()) {
+                UIExceptionHandler.showWarning("Vui lòng nhập tiêu đề!");
+                return;
+            }
+            ArrayList<LibraryItemDTO> list = new SearchItemController(dao).search(title);
+            showlist(list);
+        } catch (Exception e) {
+            UIExceptionHandler.handleException(e);
+        }
     }
     private void showlist(ArrayList<LibraryItemDTO> list)
     {
         if (list.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Khong co ket qua");
+            UIExceptionHandler.showInfo("Không có kết quả tìm kiếm");
             return;
         }
         StringBuilder sb = new StringBuilder();

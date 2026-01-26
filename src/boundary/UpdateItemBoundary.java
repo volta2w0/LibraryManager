@@ -4,27 +4,28 @@
  */
 package boundary;
 
-/**
- *
- * @author Haidang7320
- */
 import control.UpdateItemController;
 import dto.LibraryItemDTO;
 import dao.LibraryItemDAO;
-import dao.MemoryLibraryItemDAO;
+import util.UIExceptionHandler;
 
 import javax.swing.JOptionPane;
 public class UpdateItemBoundary {
+    private LibraryItemDAO dao;
+    public UpdateItemBoundary(LibraryItemDAO dao) {
+        this.dao = dao;
+    }
     public void show() {
-        LibraryItemDTO dto = new LibraryItemDTO();
-        dto.setId(Long.parseLong(JOptionPane.showInputDialog("Nhập ID cần sửa")));
-        dto.setTitle(JOptionPane.showInputDialog("Nhập title mới"));
-        dto.setValue(Integer.parseInt(JOptionPane.showInputDialog("Nhập gia tri mới: ")));
-        LibraryItemDAO dao = new MemoryLibraryItemDAO();
-        UpdateItemController up = new UpdateItemController(dao);
-        boolean result = up.update(dto);
-
-        JOptionPane.showMessageDialog(null,
-                result ? "Sửa thành công" : "Không tìm thấy tài liệu");
+        try {
+            LibraryItemDTO dto = new LibraryItemDTO();
+            dto.setId(Long.parseLong(JOptionPane.showInputDialog("Nhập ID cần sửa")));
+            dto.setTitle(JOptionPane.showInputDialog("Nhập title mới"));
+            dto.setValue(Integer.parseInt(JOptionPane.showInputDialog("Nhập gia tri mới: ")));
+            UpdateItemController up = new UpdateItemController(dao);
+            up.update(dto);
+            UIExceptionHandler.showSuccess("Cập nhật tài liệu thành công!");
+        } catch (Exception e) {
+            UIExceptionHandler.handleException(e);
+        }
     }
 }

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import entity.LibraryItem;
+import exception.ItemNotFoundException;
+import exception.ItemRemovalFailedException;
 
 public class MemoryDatabase {
     
@@ -13,15 +15,21 @@ public class MemoryDatabase {
         items.put(item.getId(), item);
     }
 
-    public static LibraryItem getById(long id) {
-        return items.get(id);
+    public static LibraryItem getById(long id) throws ItemNotFoundException {
+        LibraryItem item = items.get(id);
+        if (item == null) {
+            throw new ItemNotFoundException("Item with id " + id + " not found");
+        }
+        return item;
     }
 
     public static Map<Long, LibraryItem> getAll() {
         return items;
     }
 
-    public static boolean remove(long id) {
-        return items.remove(id) != null;
+    public static void remove(long id) throws ItemRemovalFailedException {
+        if (items.remove(id) == null) {
+            throw new ItemRemovalFailedException("Item with id " + id + " does not exist");
+        }
     }
 }

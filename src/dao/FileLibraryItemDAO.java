@@ -8,8 +8,9 @@ import entity.LibraryItem;
 import entity.Magazine;
 import exception.ItemNotFoundException;
 import exception.ItemRemovalFailedException;
-import db.MemoryDatabase;
-public class MemoryLibraryItemDAO implements LibraryItemDAO {
+import db.FileDatabase;
+
+public class FileLibraryItemDAO implements LibraryItemDAO {
     
     @Override
     public LibraryItem create(LibraryItemDTO dto) {
@@ -27,19 +28,22 @@ public class MemoryLibraryItemDAO implements LibraryItemDAO {
             default:
                 throw new IllegalArgumentException("Unknown item type: " + dto.getType());
         }
-        MemoryDatabase.insert(item);
+        FileDatabase.insert(item);
         return item;
     }
+    
     @Override
     public LibraryItem getById(long id) throws ItemNotFoundException {
-        return MemoryDatabase.getById(id);
+        return FileDatabase.getById(id);
     }
+    
     @Override
     public Map<Long, LibraryItem> getAll() {
-        return MemoryDatabase.getAll();
+        return FileDatabase.getAll();
     }
+    
     @Override
     public void remove(long id) throws ItemRemovalFailedException {
-        MemoryDatabase.remove(id);
+        FileDatabase.remove(id);
     }
 }

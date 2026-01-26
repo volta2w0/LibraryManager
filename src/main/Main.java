@@ -2,11 +2,13 @@ package main;
 
 
 import boundary.MainMenuBoundary;
-import db.fakedb;
+import dao.FileLibraryItemDAO;
+import dao.LibraryItemDAO;
+
 public class Main {
 
     public static void main(String[] args) {
-        new fakedb().load(); //chay fake db
-        new MainMenuBoundary().run();
+        LibraryItemDAO dao = new FileLibraryItemDAO();
+        new MainMenuBoundary(dao).run();
     }
 }

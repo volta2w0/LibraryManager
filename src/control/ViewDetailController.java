@@ -11,15 +11,16 @@ package control;
 import dao.LibraryItemDAO;
 import dto.LibraryItemDTO;
 import entity.LibraryItem;
+import exception.ItemNotFoundException;
+
 public class ViewDetailController {
     private LibraryItemDAO LibraryItemDAO;
     public ViewDetailController(LibraryItemDAO dao) {
         this.LibraryItemDAO = dao;
     }
-    public LibraryItemDTO viewDetail(long id)
+    public LibraryItemDTO viewDetail(long id) throws ItemNotFoundException
     {
        LibraryItem item = LibraryItemDAO.getById(id);
-       if (item == null) return null;
         LibraryItemDTO dto = new LibraryItemDTO();
         dto.setId(item.getId());
         dto.setTitle(item.getTitle());

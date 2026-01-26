@@ -8,55 +8,65 @@ package boundary;
  *
  * @author Haidang7320
  */
+import dao.LibraryItemDAO;
+import util.UIExceptionHandler;
+
 public class MainMenuBoundary {
+    private  LibraryItemDAO libraryItemDAO;
 
-
-    public MainMenuBoundary() {
+    public MainMenuBoundary(LibraryItemDAO libraryItemDAO) {
+        this.libraryItemDAO = libraryItemDAO;
     }
 
     public void run() {
         while (true) {
-            int choice = showMenu();
+            try {
+                int choice = showMenu();
 
-            switch (choice) {
-                case 1:
-                    AddItemBoundary additem = new AddItemBoundary();
-                    additem.show();
-                    break;
+                switch (choice) {
+                    case 1:
+                        AddItemBoundary additem = new AddItemBoundary(libraryItemDAO);
+                        additem.show();
+                        break;
 
-                case 2:
-                    RemoveItemBoundary removeitem = new RemoveItemBoundary();
-                    removeitem.show();
-                    break;
-                case 3:
-                    ViewDetailBoundary viewitem = new ViewDetailBoundary();
-                    viewitem.show();
-                    break;
-                case 4:
-                    SearchItemBoundary searchitem = new SearchItemBoundary();
-                    searchitem.show();
-                    break;
-                case 5:
-                    UpdateItemBoundary updateitem = new UpdateItemBoundary();
-                    updateitem.show();
-                    break;
-                case 6:
-                    CountItemBoundary countItem= new CountItemBoundary();
-                    countItem.show();
-                    break;
-                case 7:
-                    ListAllBoundary lisi = new ListAllBoundary();
-                    lisi.show();
-                    break;
-                case 8:
-                    GreaterFeeBoundary gfb = new GreaterFeeBoundary();
-                    gfb.show();
-                    break;
-                case 0:
-                    return;
+                    case 2:
+                        RemoveItemBoundary removeitem = new RemoveItemBoundary(libraryItemDAO);
+                        removeitem.show();
+                        break;
+                    case 3:
+                        ViewDetailBoundary viewitem = new ViewDetailBoundary(libraryItemDAO);
+                        viewitem.show();
+                        break;
+                    case 4:
+                        SearchItemBoundary searchitem = new SearchItemBoundary(libraryItemDAO);
+                        searchitem.show();
+                        break;
+                    case 5:
+                        UpdateItemBoundary updateitem = new UpdateItemBoundary(libraryItemDAO);
+                        updateitem.show();
+                        break;
+                    case 6:
+                        CountItemBoundary countItem= new CountItemBoundary(libraryItemDAO);
+                        countItem.show();
+                        break;
+                    case 7:
+                        ListAllBoundary lisi = new ListAllBoundary(libraryItemDAO);
+                        lisi.show();
+                        break;
+                    case 8:
+                        GreaterFeeBoundary gfb = new GreaterFeeBoundary(libraryItemDAO);
+                        gfb.show();
+                        break;
+                    case 0:
+                        UIExceptionHandler.showInfo("Cảm ơn bạn đã sử dụng chương trình!");
+                        return;
 
-                default:
-                    break;
+                    default:
+                        UIExceptionHandler.showWarning("Lựa chọn không hợp lệ! Vui lòng chọn từ 0-8");
+                        break;
+                }
+            } catch (Exception e) {
+                UIExceptionHandler.handleException(e);
             }
         }
     }

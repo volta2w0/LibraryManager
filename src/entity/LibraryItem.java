@@ -1,5 +1,8 @@
 package entity;
-public abstract class LibraryItem {
+
+import java.io.Serializable;
+
+public abstract class LibraryItem implements Serializable {
     protected long id;
     protected String title;
     protected String type;
